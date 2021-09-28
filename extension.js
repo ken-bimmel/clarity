@@ -1,7 +1,7 @@
 // The module 'vscode' contains the VS Code extensibility API
 // Import the module and reference it with the alias vscode in your code below
-const vscode = require('vscode');
-const fk = require("flesch-kincaid");
+const vscode = require("vscode");
+const fk = require("flesch-kincaid-calc");
 
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
@@ -16,8 +16,8 @@ function activate(context) {
 	console.log('Congratulations, your extension "clarity" is now active!');
 	const text = vscode.window.activeTextEditor.document.getText();
 
-	console.log("Grade: ", fk.grade(text));
-	console.log("Rate: ", fk.rate(text));
+	console.log("Text Grade: ", fk.getGradeLevel(text).toString());
+	console.log("Text Rate: ", fk.getReadingEase(text).toString());
 
 	// The command has been defined in the package.json file
 	// Now provide the implementation of the command with  registerCommand
