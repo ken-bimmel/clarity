@@ -19,7 +19,10 @@ const DISPLAY_TREE = [
 ]
 
 class ClarityTreeProvider {
-    constructor() { }
+    constructor() {
+        this._onDidChangeTreeData = new vscode.EventEmitter();
+        this.onDidChangeTreeData = this._onDidChangeTreeData.event;
+    }
 
     getTreeItem(element) {
         return element;
@@ -51,6 +54,10 @@ class ClarityTreeProvider {
             }
             return parents;
         }
+    }
+
+    refresh() {
+        this._onDidChangeTreeData.fire();
     }
 }
 

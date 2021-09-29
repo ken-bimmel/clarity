@@ -15,12 +15,10 @@ function activate() {
 	// Use the console to output diagnostic information (console.log) and errors (console.error)
 	// This line of code will only be executed once when your extension is activated
 	console.log('Congratulations, your extension "clarity" is now active!');
-	const text = vscode.window.activeTextEditor.document.getText();
 
-	console.log("Text Grade: ", fk.getGradeLevel(text).toString());
-	console.log("Text Rate: ", fk.getReadingEase(text).toString());
-
-	vscode.window.registerTreeDataProvider("clarity", new ClarityTreeProvider());
+	const clarityTreeProvider = new ClarityTreeProvider();
+	vscode.window.registerTreeDataProvider("clarity", clarityTreeProvider);
+	vscode.commands.registerCommand("clarity.refreshTreeView", () => clarityTreeProvider.refresh())
 }
 
 // this method is called when your extension is deactivated
