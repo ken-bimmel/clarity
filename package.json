@@ -10,16 +10,33 @@
 		"Other"
 	],
 	"activationEvents": [
-		"onCommand:clarity.helloWorld"
+		"onView:clarity"
 	],
 	"main": "./extension.js",
 	"contributes": {
 		"commands": [
 			{
-				"command": "clarity.helloWorld",
-				"title": "Hello World"
+				"command": "clarity.refreshTreeView",
+				"title": "Refresh"
 			}
-		]
+		],
+		"views": {
+			"explorer": [
+				{
+					"id": "clarity",
+					"name": "Clarity"
+				}
+			]
+		},
+		"menus": {
+			"view/title": [
+				{
+					"command": "clarity.refreshTreeView",
+					"when": "view == clarity",
+					"group": "navigation"
+				}
+			]
+		}
 	},
 	"scripts": {
 		"lint": "eslint .",
